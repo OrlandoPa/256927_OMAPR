@@ -3,8 +3,7 @@
 pragma solidity >=0.8.2 <0.9.0;
 
 /*
-    Primer Contrato 
-    OMAPR
+    Primer Contrato OMAPR
 */
 
 contract Storage {
