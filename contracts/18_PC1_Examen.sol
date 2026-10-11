@@ -9,6 +9,7 @@ contract Hospital256927 {
         string nombre;
         uint256 edad;
         string especialidad;
+        bool estado;
     }
 
     Paciente[] public pacientes;
@@ -21,9 +22,9 @@ contract Hospital256927 {
         direccion = msg.sender; //la cuenta que despliega
     }
 
-     function agregarElemento(uint256 _id, string memory _nombre, uint256 _edad, string memory _especialidad) public {
-        require(_id % 2 == 0, "No se permiten ids impares");
-        pacientes.push(Paciente(_id, _nombre, _edad, _especialidad));
+    function agregarElemento(uint256 _id, string memory _nombre, uint256 _edad, string memory _especialidad, bool _estado) public {
+        require(_id % 2 == 0, "No se permiten id impares");
+        pacientes.push(Paciente(_id, _nombre, _edad, _especialidad, _estado));
     }
 
     function contarElementos() public view returns (uint256) {
@@ -32,5 +33,13 @@ contract Hospital256927 {
 
     function cambiarDireccion(address _nueva) public {
         direccion = _nueva;
+    }
+
+    function listarActivos() external view {
+        for (uint256 i = 0; i < pacientes.length; i++) {
+            if (pacientes[i].estado) {
+                console.log("Paciente activo", pacientes[i].id, pacientes[i].nombre);
+            }
+        }
     }
 }
