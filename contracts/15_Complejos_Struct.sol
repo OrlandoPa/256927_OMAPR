@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.8.2 <0.9.0;
+
+import "hardhat/console.sol";
+
+contract ComplejosStruct {
+    struct Alumno {
+        uint256 codigo;
+        string nombre;
+        uint256 edad;
+    }
+
+    Alumno[] public alumnos;
+
+    function agregarAlumno(uint256 _codigo, string memory _nombre, uint256 _edad) public {
+        alumnos.push(Alumno(_codigo, _nombre, _edad));
+    } 
+
+    function mostrarAlumnoV1(uint256 _indice) public view returns (uint256 Codigo, string memory Nombre) {
+        return(alumnos[_indice].codigo, alumnos[_indice].nombre);
+    }
+
+    function mostrarAlumnoV2(uint256 _indice) public view returns (uint256 Codigo, string memory Nombre, uint256 Edad) {
+        Alumno storage al = alumnos[_indice];
+        return(al.codigo, al.nombre, al.edad);
+    }
+}
